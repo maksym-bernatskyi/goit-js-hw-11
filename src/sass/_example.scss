@@ -40,7 +40,7 @@ b {
   justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: rgb(98, 99, 110);
+  background-color: rgb(32, 5, 129);
 
   &__btn {
     border: none;
@@ -48,11 +48,11 @@ b {
     border-bottom-right-radius: 5px;
     padding: 5px;
     cursor: pointer;
-    background-color: rgb(180, 182, 199);
+    background-color: rgb(176, 177, 190);
   }
 
   &__btn:hover {
-    background-color: rgb(133, 134, 141);
+    background-color: rgb(129, 131, 145);
     color: #000;
   }
 }
@@ -76,7 +76,7 @@ b {
 }
 
 .info {
-  background-color: rgb(227, 237, 253);
+  background-color: rgb(217, 224, 234);
   display: flex;
   justify-content: center;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
