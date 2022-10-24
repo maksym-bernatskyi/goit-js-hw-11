@@ -7,7 +7,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const refs = {
   searchForm: document.querySelector('.search-form'),
   galleryContainer: document.querySelector('.gallery'),
-  loadMorBtn: document.querySelector('.load-more'),
+  loadMoreBtn: document.querySelector('.load-more'),
 };
 
 let lightbox = new SimpleLightbox('.gallery a', {
@@ -17,34 +17,45 @@ let lightbox = new SimpleLightbox('.gallery a', {
 const apiService = new ApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMorBtn.addEventListener('click', onLoadMore);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(event) {
-    event.preventDefault();
-
-    clearGalleryContainer();
+  event.preventDefault();
+  
     apiService.searchName = event.currentTarget.elements.searchQuery.value;
     apiService.resetPage();
-    apiService.fetchArticles().then(addArticles);
-}
-
-function onLoadMore() {
     apiService.fetchArticles().then(({ hits, totalHits }) => {
-      addClassHidden();
+   
     if (apiService.searchName === '') {
-      Notiflix.Notify.failure('Oops... Please enter the text');
+     return Notiflix.Notify.failure('Oops... Please enter the text');
     } else if (hits.length === 0) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.',
       );
       return;
     }
-
-    Notiflix.Notify.success(`"Hooray! We found ${totalHits} images."`);
+     Notiflix.Notify.success(`"Hooray! We found ${totalHits} images."`);
+    addClassHidden();
+    removeClassHidden();
     clearGalleryContainer();
     addArticles(hits);
     lightbox.refresh();
   });
+}
+
+function onLoadMore() {
+  const total = document.querySelectorAll('.photo-card').length;
+
+  apiService.fetchArticles().then(({ hits, totalHits}) => {
+    if (total >= totalHits) {
+       Notiflix.Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+      addClassHidden();
+    }
+    addArticles(hits);
+    lightbox.refresh();
+  })
 }
 
 function addArticles(hits) {
@@ -56,9 +67,9 @@ function clearGalleryContainer() {
 }
 
 function addClassHidden() {
-  refs.loadMorBtn.classList.add('is-hidden');
+  refs.loadMoreBtn.classList.add('is-hidden');
 }
 
 function removeClassHidden() {
-  refs.loadMorBtn.classList.remove('is-hidden');
+  refs.loadMoreBtn.classList.remove('is-hidden');
 }

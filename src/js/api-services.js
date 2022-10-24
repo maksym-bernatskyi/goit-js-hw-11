@@ -13,7 +13,7 @@ export default class ApiService {
     async fetchArticles(page) {
     try {
       const response = await axios.get(
-        `${this.BASE_URL}?key=${this.API_KEY}&q=${this.name}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=20`,
+        `${this.BASE_URL}?key=${this.API_KEY}&q=${this.name}&image_type=photo&orientation=horizontal&page=${this.page}&per_page=40`
       );
       const articles = await response.data;
       this.incrementPage();
