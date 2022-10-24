@@ -1,5 +1,5 @@
 import ApiService from './api-services';
-import compiledTemplate from '../card.hbs';
+import cardTemplate from '../card.hbs';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -30,7 +30,7 @@ function onSearch(event) {
 
 function onLoadMore() {
     apiService.fetchArticles().then(({ hits, totalHits }) => {
-    
+      addClassHidden();
     if (apiService.searchName === '') {
       Notiflix.Notify.failure('Oops... Please enter the text');
     } else if (hits.length === 0) {
@@ -48,9 +48,17 @@ function onLoadMore() {
 }
 
 function addArticles(hits) {
-  refs.galleryContainer.insertAdjacentHTML('beforeend', compiledTemplate(hits));
+  refs.galleryContainer.insertAdjacentHTML('beforeend', cardTemplate(hits));
 }
 
 function clearGalleryContainer() {
   refs.galleryContainer.innerHTML = '';
+}
+
+function addClassHidden() {
+  refs.loadMorBtn.classList.add('is-hidden');
+}
+
+function removeClassHidden() {
+  refs.loadMorBtn.classList.remove('is-hidden');
 }

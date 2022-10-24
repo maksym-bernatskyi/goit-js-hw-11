@@ -17,8 +17,8 @@ input {
   border-bottom-left-radius: 5px;
   border: none;
   outline: none;
-  background-color: rgba(82, 83, 87, 0.747);
-  color: rgba(224, 222, 222, 0.966);
+  background-color: rgba(187, 190, 201, 0.747);
+  color: rgb(3, 0, 0);
 }
 
 ::placeholder {
@@ -40,7 +40,7 @@ b {
   justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: rgb(32, 5, 129);
+  background-color: rgb(91, 136, 94);
 
   &__btn {
     border: none;
@@ -48,11 +48,11 @@ b {
     border-bottom-right-radius: 5px;
     padding: 5px;
     cursor: pointer;
-    background-color: rgb(176, 177, 190);
+    background-color: rgb(217, 218, 232);
   }
 
   &__btn:hover {
-    background-color: rgb(129, 131, 145);
+    background-color: rgb(180, 183, 205);
     color: #000;
   }
 }
@@ -104,5 +104,13 @@ b {
 }
 
 .load-more {
-  height: 20px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.is-hidden {
+  display: none;
 }
