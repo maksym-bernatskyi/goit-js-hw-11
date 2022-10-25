@@ -46,6 +46,6 @@ export default class ApiService {
   }
 
   get isShowLoadMoreBtn() {
-    return this.page < this.totalPages;
+    return this.page <= this.totalPages;
   }
 }

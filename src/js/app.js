@@ -47,13 +47,13 @@ function onSearch(event) {
 }
 
 function onLoadMore() {
-  if (!apiService.isShowLoadMoreBtn) {
-    addClassHidden();
-    Notiflix.Notify.failure(
-      "We're sorry, but you've reached the end of search results."
-    );
-  }
   apiService.fetchArticles().then(({ hits }) => {
+    if (!apiService.isShowLoadMoreBtn) {
+      addClassHidden();
+      Notiflix.Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+    }
     addArticles(hits);
     lightbox.refresh();
   });
